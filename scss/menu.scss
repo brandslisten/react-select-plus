@@ -63,6 +63,13 @@
 		cursor: default;
 	}
 
+	&.has-checkicon {
+	  &:after {
+		content: '✔';
+		padding-left: 10px;
+	  }
+	}
+
 }
 
 

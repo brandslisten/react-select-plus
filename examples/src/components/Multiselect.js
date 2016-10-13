@@ -8,6 +8,8 @@ const FLAVOURS = [
 	{ label: 'Caramel', value: 'caramel' },
 	{ label: 'Cookies and Cream', value: 'cookiescream' },
 	{ label: 'Peppermint', value: 'peppermint' },
+	{ label: 'Raspberry', value: 'raspberry' },
+	{ label: 'Bounty', value: 'bounty' }
 ];
 
 const WHY_WOULD_YOU = [
@@ -25,6 +27,8 @@ var MultiSelectField = React.createClass({
 			crazy: false,
 			options: FLAVOURS,
 			value: ['Invalid value'],
+		  	removeOptions: false,
+		  	searchable: false
 		};
 	},
 	handleSelectChange (value) {
@@ -34,6 +38,9 @@ var MultiSelectField = React.createClass({
 	toggleDisabled (e) {
 		this.setState({ disabled: e.target.checked });
 	},
+	toggleSearchable (e) {
+		this.setState({ searchable: e.target.checked });
+	},
 	toggleChocolate (e) {
 		let crazy = e.target.checked;
 		this.setState({
@@ -41,11 +48,14 @@ var MultiSelectField = React.createClass({
 			options: crazy ? WHY_WOULD_YOU : FLAVOURS,
 		});
 	},
+  	toggleRemoveOptions (e) {
+	  	this.setState({ removeOptions: e.target.checked });
+	},
 	render () {
 		return (
 			<div className="section">
 				<h3 className="section-heading">{this.props.label}</h3>
-				<Select multi simpleValue disabled={this.state.disabled} value={this.state.value} placeholder="Select your favourite(s)" options={this.state.options} onChange={this.handleSelectChange} />
+				<Select multi multiText simpleValue disabled={this.state.disabled} searchable={this.state.searchable} value={this.state.value} removeOptions={this.state.removeOptions} placeholder="Select your favourite(s)" options={this.state.options} onChange={this.handleSelectChange} />
 
 				<div className="checkbox-list">
 					<label className="checkbox">
@@ -53,9 +63,17 @@ var MultiSelectField = React.createClass({
 						<span className="checkbox-label">Disable the control</span>
 					</label>
 					<label className="checkbox">
+						<input type="checkbox" className="checkbox-control" checked={this.state.searchable} onChange={this.toggleSearchable} />
+						<span className="checkbox-label">Make it searchable</span>
+					</label>
+					<label className="checkbox">
 						<input type="checkbox" className="checkbox-control" checked={this.state.crazy} onChange={this.toggleChocolate} />
 						<span className="checkbox-label">I don't like Chocolate (disabled the option)</span>
 					</label>
+				  <label className="checkbox">
+					<input type="checkbox" className="checkbox-control" checked={this.state.removeOptions} onChange={this.toggleRemoveOptions} />
+					<span className="checkbox-label">Remove selected option</span>
+				  </label>
 				</div>
 			</div>
 		);

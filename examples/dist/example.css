@@ -200,6 +200,10 @@
 .Select--multi .Select-multi-value-wrapper {
   display: inline-block;
 }
+.Select--multiText .Select-multi-value-wrapper {
+  padding-left: 5px;
+  width: 100%;
+}
 .Select .Select-aria-only {
   display: inline-block;
   height: 1px;
@@ -285,6 +289,10 @@
   color: #cccccc;
   cursor: default;
 }
+.Select-option.has-checkicon:after {
+  content: '✔';
+  padding-left: 10px;
+}
 .Select-noresults {
   box-sizing: border-box;
   color: #999999;
@@ -315,6 +323,13 @@
   margin-left: 5px;
   margin-top: 5px;
   vertical-align: top;
+}
+.Select--multi .Select-value-text {
+  display: inline;
+  display: inline-block;
+  line-height: 1.4;
+  margin-left: 5px;
+  margin-top: 5px;
 }
 .Select--multi .Select-value-icon,
 .Select--multi .Select-value-label {
